@@ -1,0 +1,16 @@
+
+body  {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+.label{
+    text-align: right;
+    width: 150px;
+
+}
+
+.error {
+    color: red;
+    font-size: .9em;
+}
