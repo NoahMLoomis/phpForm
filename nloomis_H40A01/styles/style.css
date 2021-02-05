@@ -6,8 +6,12 @@ body  {
 
 .label{
     text-align: right;
-    width: 150px;
+    width: 180px;
 
+}
+
+button{
+    margin-top: 10px
 }
 
 .error {
