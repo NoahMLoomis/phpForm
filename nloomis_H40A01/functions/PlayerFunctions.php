@@ -10,6 +10,5 @@
     $nameReg = "/[A-Za-z][-'\s]/";
     $emailReg = "/^\w+[\w-.]*@\w+(-\w+)|(\w*)\.(com|org|ca)$/";
 
-    
 
 ?>
