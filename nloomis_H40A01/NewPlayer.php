@@ -119,8 +119,6 @@
     <?php
     }else{
 
-      
-
         $logString = "$fName~$lName~$email~$city~$country~" . ($professional ? "yes" : "no");
 
         $openFile = fopen("./other/players.txt", 'a');
@@ -145,32 +143,30 @@ if (filesize("./other/players.txt")){
     ?>
     <div id="wrapper">
         <h2>Existing Players</h2>
-    <table>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Professional</th>
-    </tr>
-
-    <?php
-      foreach ($fileInfoArr as $singlePerson){
-
-        $singlePersonDetails = explode("~", $singlePerson);
-        echo "<tr>";
-        foreach ($singlePersonDetails as $detail){
-            echo "<td>$detail</td>";
-        }
-        echo "</tr>";
-
-      }
-
-    ?>
-
-    </table>
-      </div>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Professional</th>
+            </tr>
+            
+            <?php
+            //Outer loop to filter each contact
+            //Inner loop to filter each detail in that contact
+            foreach ($fileInfoArr as $singlePerson){
+                $singlePersonDetails = explode("~", $singlePerson);
+                echo "<tr>";
+                foreach ($singlePersonDetails as $detail){
+                    echo "<td>$detail</td>";
+                }
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
 
     <?php
     
