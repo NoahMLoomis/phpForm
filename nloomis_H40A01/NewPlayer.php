@@ -15,168 +15,62 @@
 <body>
 
 <?php
-
-    // require "PlayerFunctions.php";
-    $emptyErrMsg = "Please enter a value for the field";
-
-    $nameReg = "/[A-Za-z]/";
-    $cityReg = "/[A-Za-z]/";
-    // $emailReg = "/^\w+[\w-.]*@\w+(-\w+)|(\w*)\.(com|org|ca)$/";
-    $emailReg = "/[A-Za-z]/";
-
-    $displayForm= TRUE;
-
-    
-    $fNameValid= true;
-    $lNameValid = true;
-    $emailValid = true;
-    $cityValid = true;
-    $countryValid = true;
-    $passwordValid = true;
-    $confirmPasswordValid= true;
-
-
-    $fNameErrMsg = $emptyErrMsg;
-    $lNameErrMsg = $emptyErrMsg;
-    $emailErrMsg = $emptyErrMsg;
-    $cityErrMsg = $emptyErrMsg;
-    $countryErrMsg = $emptyErrMsg;
-    $passwordErrMsg = $emptyErrMsg;
-
-    if (isset($_POST["newPlayerSub"])){
-        
-        $fName = $_POST["firstName"];
-        $lName = $_POST["lastName"];
-        $email = $_POST["email"];
-        $city = $_POST["city"];
-        $country = $_POST["country"];
-        $professional = $_POST["professional"];
-        $password = $_POST["password"];
-        $confirmPassword = $_POST["confirmPassword"];
-
-
-
-        if (trim($fName) === ""){
-            $fNameValid = false;
-        }else if (!preg_match($nameReg, $fName)){
-            $fNameValid = false;
-            $fNameErrMsg = "First name can only contain letters, dash, apostraphe or spaces";
-        }else{
-            $fNameValid = true; 
-        }
-        //Else it is valid???
-        
-        if (trim($lName) === ""){
-            $lNameValid = false;
-        }else if (!preg_match($nameReg, $fName)){
-            $lNameValid = false;
-            $lNameErrMsg = "Last name can only contain letters, dashes, apostraphes or spaces";
-        }else{
-            $lNameValid = true; 
-        }
-
-        if (trim($email) === ""){
-            $emailValid = false;
-        }else if (!preg_match($emailReg, $email)){
-            $emailValid = false;
-            $emailErrMsg = "Email format is not correct";
-        }else{
-            $emailValid = true; 
-        }
-
-        if (trim($city) === ""){
-            $cityValid = false;
-        }else if (!preg_match($cityReg, $email)){
-            $cityValid = false;
-            $cityErrMsg = "City can only contain letters, dashes or spaces";
-        }else{
-            $cityValid = true; 
-        }
-
-        if (trim($password) === "" || trim($confirmPassword) == ""){
-            $passwordValid = false;
-        }else if ($password !== $confirmPassword){
-            $passwordValid = false;
-            $passwordErrMsg = "Passwords do not match";
-        }else{
-            $passwordValid = true; 
-        }
-
-        if (!$passwordValid || !$fNameValid || !$lNameValid || !$emailValid || !$cityValid || !$passwordValid ){
-            $displayForm = true;
-        }else{
-            $displayForm = false;
-        }
-
-    }
+    require "./other/PlayerFunctions.php";
 
     if ($displayForm){
 
 ?>
-
-    
-    
-    <form action="NewPlayer.php" method="post" name="newPlayerForm" id="newPlayerForm">
     <h1>Add a new player</h1>
-        <p id="errorFirstName" class="error">
-            <?php 
-            echo ($fNameValid ?  "" : $fNameErrMsg);
-            ?>
-        </p>
+    <form action="NewPlayer.php" method="post" name="newPlayerForm" id="newPlayerForm">
+    
         <label for="firstName" id="fName" class="label">First Name: </label>
         <input type="text" id="firstName" name="firstName" value="<?php echo $fName ?>"
         class="<?php
             echo ($fNameValid ?  "" : "errorInput");
             ?>"
-        /><br/>
-
-
-
-        <p id="errorLastName" class="error">
+        />
+        
+        <p id="errorFirstName" class="error">
             <?php 
-            echo ($lNameValid ?  "" : $lNameErrMsg);
+            echo ($fNameValid ?  "" : $fNameErrMsg);
             ?>
         </p>
+
+     
         <label for="lastName" id="lName" class="label">Last Name: </label>
         <input type="text" id="lastName" name="lastName" value="<?php echo $lName ?>" class="<?php 
             echo ($lNameValid ?  "" : "errorInput");
-            ?>"/><br/>
+            ?>"/>
+        <p id="errorLastName" class="error">
+                    <?php 
+                    echo ($lNameValid ?  "" : $lNameErrMsg);
+                    ?>
+        </p>
 
-
-
-
+        
+        <label for="email" id="mail" class="label">Email: </label>
+        <input type="text" id="email" size="20" name="email" value="<?php echo $email ?>" class="<?php 
+            echo ($emailValid ?  "" : "errorInput");
+            ?>"/>
 
         <p id="errorEmail" class="error">
             <?php 
             echo ($emailValid ?  "" : $emailErrMsg);
             ?>
         </p>
-        <label for="email" id="mail" class="label">Email: </label>
-        <input type="text" id="email" size="20" name="email" value="<?php echo $email ?>" class="<?php 
-            echo ($emailValid ?  "" : "errorInput");
+
+        
+        <label for="city" id="citylbl" class="label">City: </label>
+        <input type="text" id="city"  name="city" value="<?php echo $city ?>" class="<?php 
+            echo ($cityValid ?  "" : "errorInput");
             ?>"/>
-
-
-
-
         <p id="errorCity" class="error">
             <?php 
             echo ($cityValid ?  "" : $cityErrMsg);
             ?>
         </p>
-        <label for="city" id="citylbl" class="label">City: </label>
-        <input type="text" id="city"  name="city" value="<?php echo $city ?>" class="<?php 
-            echo ($cityValid ?  "" : "errorInput");
-            ?>"/>
 
-
-
-
-        <p id="errorCountry" class="error">
-            <?php 
-            echo ($countryValid ?  "" : $countryErrMsg);
-            ?>
-        </p>
+        
         <label for="country" id="countrylbl" class="label">Country: </label>
         <select id="country" name="country" class="<?php 
             echo ($countryValid ?  "" : "errorInput");
@@ -189,43 +83,102 @@
             <option value="Peru">Peru</option>
             <option value="Poland">Poland</option>
         </select>
-        <br/>
+        <p id="errorCountry" class="error">
+            <?php 
+            echo ($countryValid ?  "" : $countryErrMsg);
+            ?>
+        </p>
 
         <label for="professional" id="professionallbl" class="label">Professional: </label>
         <input type="checkbox" id="professional" name="professional"/>
-        
+        <p></p>
 
-        <p id="errorPassword" class="error">
-            <?php 
-            echo ($passwordValid ?  "" : $passwordErrMsg);
-            ?>
-            
-        </p>
         <label for="password" id="passwordlbl" class="label">Password: </label>
         <input type="password" id="password" name="password" value="<?php echo $password ?>"  class="<?php 
             echo ($passwordValid ?  "" : "errorInput");
             ?>"/>
 
+        <p id="errorPassword" class="error">
+            <?php 
+            echo ($passwordValid ?  "" : $passwordErrMsg);
+            ?>    
+        </p>
+        
+        
+        <label for="confirmPassword" id="confirmPasswordlbl" class="label">Confirm Password: </label>
+        <input type="password" id="confirmPassword" name="confirmPassword" value="<?php echo $password ?>"  class="<?php 
+            echo ($passwordValid ?  "" : "errorInput");
+            ?>"/>
         <p id="errorConfirmPassword" class="error">
             <?php 
             echo ($passwordValid ?  "" : $passwordErrMsg);
             ?>
         </p>
-        <label for="confirmPassword" id="confirmPasswordlbl" class="label">Confirm Password: </label>
-        <input type="password" id="confirmPassword" name="confirmPassword" value="<?php echo $password ?>"  class="<?php 
-            echo ($passwordValid ?  "" : "errorInput");
-            ?>"/>
-        
-        <br/>
         <input type="submit" name="newPlayerSub" class="btn btn-success" value="Add New Player" id="newPlayerSub"/>
     </form>
     <?php
     }else{
-        echo "New Player added";
-    }
+
+      
+
+        $logString = "$fName~$lName~$email~$city~$country~" . ($professional ? "yes" : "no");
+
+        $openFile = fopen("./other/players.txt", 'a');
+        fwrite($openFile,"$logString\n");
+      
+        fclose("./other/players.txt");
+        ?>
+
+    <div id="playerAddedDiv">
+    <h2>Player added</h2>
     
+    <p><?php echo "$fName $lName" ?> has been added to your roster</p>
+    <a href='./NewPlayer.php'>Continue</a>
+    </div>
+    
+    <?php
+}
+
+//Logic to display table 
+if (filesize("./other/players.txt")){
+    $fileInfoArr = file("./other/players.txt");
+    ?>
+    <div id="wrapper">
+        <h2>Existing Players</h2>
+    <table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Professional</th>
+    </tr>
+
+    <?php
+      foreach ($fileInfoArr as $singlePerson){
+
+        $singlePersonDetails = explode("~", $singlePerson);
+        echo "<tr>";
+        foreach ($singlePersonDetails as $detail){
+            echo "<td>$detail</td>";
+        }
+        echo "</tr>";
+
+      }
+
     ?>
 
+    </table>
+      </div>
+
+    <?php
+    
+    fclose($file);
+}
+    ?>
+    
+    
 </body>
 </html>
 

@@ -1,13 +1,73 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 body  {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Poppins', Verdana, Tahoma, sans-serif;
+    background-color: #CCFBFE;
+}
+
+h1, h2{
     text-align: center;
 }
+
 
 .label{
     text-align: right;
     width: 180px;
+    margin: 5px 0px 5px 0px;
+}
 
+#playerAddedDiv{
+    text-align: center;
+}
+
+#wrapper{
+    margin-top: 40px;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 200px 200px 500px;
+    justify-content: right;
+}
+
+#professional{
+    margin-top: 12px;
+}
+table{
+    background-color: #FF495C;
+    margin-top: 20px;
+    margin-left : auto;
+    margin-right: auto;
+}
+
+table, th, td{
+    
+    border: 1px solid #0A2463;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+
+th:hover{
+    background-color: black;
+    color: whitesmoke;
+}
+td:hover{
+    background-color: black;
+    color: whitesmoke;
+}
+
+th{
+    text-align: center;
+}
+
+
+input{
+    margin: 5px 0px 5px 0px;
+}
+
+
+#newPlayerSub{
+    grid-column: 2/3;
 }
 
 button{
@@ -17,6 +77,8 @@ button{
 .error {
     color: red;
     font-size: .9em;
+    text-align: left;
+    margin-left: 10px;
 }
 
 .errorInput{
